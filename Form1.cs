@@ -17,7 +17,9 @@ namespace ExportVocab
         private DataTable table = new DataTable();
         private MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
         private MySqlCommandBuilder sqlCmdBuilder = new MySqlCommandBuilder();
-
+        // db name
+        private string m_db;
+        
         public Form1()
         {
             InitializeComponent();
@@ -25,10 +27,10 @@ namespace ExportVocab
 
         private void btnConn_Click(object sender, EventArgs e)
         {
-            //
+            m_db = "mysql";
             string connStr = string.Format(
-                "server={0}; user id={1}; password={2}; database=mysql; pooling=false; Convert Zero Datetime=True",
-                edtSrv.Text, edtUser.Text, edtPwd.Text);
+                "server={0}; user id={1}; password={2}; database={3}; pooling=false; Convert Zero Datetime=True",
+                edtSrv.Text, edtUser.Text, edtPwd.Text, m_db);
             try
             {
                 conn = new MySqlConnection(connStr);
