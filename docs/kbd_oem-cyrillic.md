@@ -57,5 +57,10 @@ For example, kbdmon's name is mon.
 |oem_period|1102|ю|
 |oem_102|1169|ґ|
 
+## [utf8mb3](https://mariadb.com/docs/server/reference/data-types/string-data-types/character-sets/unicode)
+- Basic Latin letters, numbers and punctuation use one byte.
+- European and Middle East letters mostly fit into 2 bytes.
+- Korean, Chinese, and Japanese ideographs use 3-bytes.
+
 ## Ref
 - [Cyrillic script](https://en.wikipedia.org/wiki/Cyrillic_script#Cyrillic_alphabets)
