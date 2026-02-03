@@ -202,15 +202,12 @@ namespace ExportVocab
                 reader2.Close();
             }
 
-            int i = 1;
-
             foreach (var item in myWord)
             {
                 strTmp2 = getDirionary(item.Value);
                 if (!string.IsNullOrEmpty(strTmp2))
                 {
                     m_kbdWord.Add(new Pinyin { AzStr = strTmp2, Letter = item.Value });
-                    i++;
                 }
 
             }
