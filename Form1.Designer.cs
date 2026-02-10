@@ -1,14 +1,15 @@
-﻿namespace ExportVocab
+﻿
+namespace ExportVocab
 {
     partial class Form1
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -23,169 +24,169 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            groupBox1 = new GroupBox();
-            btnConn = new Button();
-            label3 = new Label();
-            label2 = new Label();
-            label1 = new Label();
-            edtUser = new TextBox();
-            edtSrv = new TextBox();
-            edtPwd = new TextBox();
-            cBoxDBs = new ComboBox();
-            cBoxTables = new ComboBox();
-            dataGridView1 = new DataGridView();
-            label4 = new Label();
-            label5 = new Label();
-            groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            SuspendLayout();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnConn = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.edtUser = new System.Windows.Forms.TextBox();
+            this.edtSrv = new System.Windows.Forms.TextBox();
+            this.edtPwd = new System.Windows.Forms.TextBox();
+            this.cBoxDBs = new System.Windows.Forms.ComboBox();
+            this.cBoxTables = new System.Windows.Forms.ComboBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.SuspendLayout();
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(btnConn);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(edtUser);
-            groupBox1.Controls.Add(edtSrv);
-            groupBox1.Controls.Add(edtPwd);
-            groupBox1.Location = new Point(28, 27);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(315, 211);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "连接服务器";
+            this.groupBox1.Controls.Add(this.btnConn);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.edtUser);
+            this.groupBox1.Controls.Add(this.edtSrv);
+            this.groupBox1.Controls.Add(this.edtPwd);
+            this.groupBox1.Location = new System.Drawing.Point(24, 23);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(270, 194);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "连接服务器";
             // 
             // btnConn
             // 
-            btnConn.Location = new Point(105, 185);
-            btnConn.Name = "btnConn";
-            btnConn.Size = new Size(188, 20);
-            btnConn.TabIndex = 12;
-            btnConn.Text = "连接";
-            btnConn.UseVisualStyleBackColor = true;
-            btnConn.Click += btnConn_Click;
+            this.btnConn.Location = new System.Drawing.Point(90, 160);
+            this.btnConn.Name = "btnConn";
+            this.btnConn.Size = new System.Drawing.Size(161, 22);
+            this.btnConn.TabIndex = 12;
+            this.btnConn.Text = "Connect";
+            this.btnConn.UseVisualStyleBackColor = true;
+            this.btnConn.Click += new System.EventHandler(this.btnConn_Click);
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(32, 141);
-            label3.Name = "label3";
-            label3.Size = new Size(60, 15);
-            label3.TabIndex = 9;
-            label3.Text = "Password:";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(27, 122);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Password:";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(32, 89);
-            label2.Name = "label2";
-            label2.Size = new Size(33, 15);
-            label2.TabIndex = 8;
-            label2.Text = "User:";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(27, 77);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(32, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "User:";
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(32, 35);
-            label1.Name = "label1";
-            label1.Size = new Size(60, 15);
-            label1.TabIndex = 7;
-            label1.Text = "Server(IP):";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(27, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Server(IP):";
             // 
             // edtUser
             // 
-            edtUser.Location = new Point(105, 86);
-            edtUser.Name = "edtUser";
-            edtUser.Size = new Size(188, 23);
-            edtUser.TabIndex = 2;
+            this.edtUser.Location = new System.Drawing.Point(90, 75);
+            this.edtUser.Name = "edtUser";
+            this.edtUser.Size = new System.Drawing.Size(162, 20);
+            this.edtUser.TabIndex = 2;
             // 
             // edtSrv
             // 
-            edtSrv.Location = new Point(105, 33);
-            edtSrv.Name = "edtSrv";
-            edtSrv.Size = new Size(188, 23);
-            edtSrv.TabIndex = 1;
-            edtSrv.Text = "127.0.0.1";
+            this.edtSrv.Location = new System.Drawing.Point(90, 29);
+            this.edtSrv.Name = "edtSrv";
+            this.edtSrv.Size = new System.Drawing.Size(162, 20);
+            this.edtSrv.TabIndex = 1;
+            this.edtSrv.Text = "127.0.0.1";
             // 
             // edtPwd
             // 
-            edtPwd.Location = new Point(105, 139);
-            edtPwd.Name = "edtPwd";
-            edtPwd.PasswordChar = '*';
-            edtPwd.Size = new Size(188, 23);
-            edtPwd.TabIndex = 3;
+            this.edtPwd.Location = new System.Drawing.Point(90, 120);
+            this.edtPwd.Name = "edtPwd";
+            this.edtPwd.PasswordChar = '*';
+            this.edtPwd.Size = new System.Drawing.Size(162, 20);
+            this.edtPwd.TabIndex = 3;
             // 
             // cBoxDBs
             // 
-            cBoxDBs.DropDownStyle = ComboBoxStyle.DropDownList;
-            cBoxDBs.FormattingEnabled = true;
-            cBoxDBs.Location = new Point(412, 20);
-            cBoxDBs.Name = "cBoxDBs";
-            cBoxDBs.Size = new Size(126, 23);
-            cBoxDBs.TabIndex = 4;
-            cBoxDBs.SelectedIndexChanged += cBoxDBs_SelectedIndexChanged;
+            this.cBoxDBs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBoxDBs.FormattingEnabled = true;
+            this.cBoxDBs.Location = new System.Drawing.Point(353, 17);
+            this.cBoxDBs.Name = "cBoxDBs";
+            this.cBoxDBs.Size = new System.Drawing.Size(109, 21);
+            this.cBoxDBs.TabIndex = 4;
+            this.cBoxDBs.SelectedIndexChanged += new System.EventHandler(this.cBoxDBs_SelectedIndexChanged);
             // 
             // cBoxTables
             // 
-            cBoxTables.DropDownStyle = ComboBoxStyle.DropDownList;
-            cBoxTables.FormattingEnabled = true;
-            cBoxTables.Location = new Point(612, 20);
-            cBoxTables.Name = "cBoxTables";
-            cBoxTables.Size = new Size(126, 23);
-            cBoxTables.TabIndex = 5;
-            cBoxTables.SelectedIndexChanged += cBoxTables_SelectedIndexChanged;
+            this.cBoxTables.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBoxTables.FormattingEnabled = true;
+            this.cBoxTables.Location = new System.Drawing.Point(525, 17);
+            this.cBoxTables.Name = "cBoxTables";
+            this.cBoxTables.Size = new System.Drawing.Size(109, 21);
+            this.cBoxTables.TabIndex = 5;
+            this.cBoxTables.SelectedIndexChanged += new System.EventHandler(this.cBoxTables_SelectedIndexChanged);
             // 
             // dataGridView1
             // 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(362, 60);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(376, 176);
-            dataGridView1.TabIndex = 6;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(310, 52);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(322, 165);
+            this.dataGridView1.TabIndex = 6;
             // 
             // label4
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(362, 23);
-            label4.Name = "label4";
-            label4.Size = new Size(44, 15);
-            label4.TabIndex = 10;
-            label4.Text = "数据库";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(310, 20);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(43, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "数据库";
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(562, 23);
-            label5.Name = "label5";
-            label5.Size = new Size(43, 15);
-            label5.TabIndex = 11;
-            label5.Text = "数据表";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(482, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "数据表";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(755, 246);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(cBoxTables);
-            Controls.Add(cBoxDBs);
-            Controls.Add(groupBox1);
-            Controls.Add(dataGridView1);
-            Name = "Form1";
-            Text = "Exporting vocabulary from MySQL";
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(647, 222);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.cBoxTables);
+            this.Controls.Add(this.cBoxDBs);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.dataGridView1);
+            this.Name = "Form1";
+            this.Text = "Exporting vocabulary from MySQL";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
