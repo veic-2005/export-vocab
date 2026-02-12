@@ -1,6 +1,14 @@
 ﻿using MySql.Data.MySqlClient;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
-
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ExportVocab
 {
@@ -31,8 +39,11 @@ namespace ExportVocab
             m_db = "carnumber";
 
             m_connStr = string.Format(
-                "server={0}; user id={1}; password={2}; database={3}; pooling=false; Convert Zero Datetime=True",
+                "server={0}; user id={1}; password={2}; database={3}; " +
+                "pooling=false; Convert Zero Datetime=True",
                 m_srv, m_usr, m_pwd, m_db);
+
+            WinConsole.Initialize(false);
 
             cBoxTables.Items.Add("Temp Table 1");
             cBoxTables.Items.Add("Temp Table 2");
@@ -71,7 +82,7 @@ namespace ExportVocab
             using (conn)
             {
                 // 设置数据桥
-                dataAdapter = new MySqlDataAdapter(m_sql, conn);
+                dataAdapter = new MySqlDataAdapter(sql, conn);
 
                 // get 数据
                 sqlCmdBuilder = new MySqlCommandBuilder(dataAdapter);
@@ -82,6 +93,135 @@ namespace ExportVocab
                 // 指定数据源
                 dataGridView1.DataSource = ds.Tables[0];
             }
+        }
+
+        private void btnMb_Click(object sender, EventArgs e)
+        {
+            Dictionary<int, string> myWord = null;
+            Dictionary<string, string> myKbd = null;
+            List<Pinyin> myKbdWord = new List<Pinyin>();
+
+            string strSql1 = "SELECT oem.letter,oem.sn FROM kbd_oem AS oem WHERE oem.name = 'ru'";
+            string strSql2 = "SELECT az.letter,az.key101 FROM kbd_az AS az WHERE az.name = 'ru'";
+            string strSql3 = " UNION ALL ";
+            string strSql = strSql1 + strSql3 + strSql2;
+
+            string strSqlWord = "SELECT id, bare FROM words2;";
+            string strTmp2 = "";
+
+            m_db = "carnumber";
+            if (isConnect(m_connStr, m_db))
+            {
+                myWord = new Dictionary<int, string>(
+                    (IDictionary<int, string>)GetDictionaryData(m_conn, strSqlWord, true));
+				Console.WriteLine("db: " + m_db);
+            }
+
+            if (isConnect(m_connStr, m_db))
+            {
+                myKbd = new Dictionary<string, string>(
+                    (IDictionary<string, string>)GetDictionaryData(m_conn, strSql, false));
+				Console.WriteLine("table: cross");
+            }
+
+            foreach (var item in myWord)
+            {
+                strTmp2 = getDirionary(item.Value, myKbd);
+                if (!string.IsNullOrEmpty(strTmp2))
+                {
+                    myKbdWord.Add(new Pinyin { AzStr = strTmp2, Letter = item.Value });
+                }
+
+            }
+
+            foreach (var item in myKbdWord)
+            {
+                System.Diagnostics.Debug.WriteLine(item.AzStr + "," + item.Letter);
+            }
+        }
+
+        string itostr(string val)
+        {
+            string result = "";
+            int iVal = 0;
+
+            if (Int32.TryParse(val, out iVal))
+            {
+                val = "_" + val;
+            }
+
+            result = val;
+
+            return result;
+        }
+
+        string getDirionary(string sub, Dictionary<string, string> inKdb)
+        {
+            string result = "";
+
+            char[] chSubs = sub.ToArray();
+
+            foreach (char c in chSubs)
+            {
+                foreach (var kbd in inKdb)
+                {
+                    char[] chKeys = kbd.Key.ToArray();
+                    if (c.Equals(chKeys[0]))
+                    {
+                        // fx
+                        ////result += inKdb.TryGetValue(kbd.Key, out var value) ? value : null;
+                        // .net core
+                        result += inKdb.GetValueOrDefault(kbd.Key);
+                    }
+                }
+
+            }
+
+            return result;
+        }
+
+        private void btn2d_Click(object sender, EventArgs e)
+        {
+            string strFmt = "{{ {0}, \"{1}\", \"{2}\" }},";
+            m_db = "carnumber";
+
+            printCol0hash(strFmt);
+        }
+
+        private void printCol0hash(string format)
+        {
+            int iHash = 0;
+
+            if (isConnect(m_connStr, m_db))
+            {
+				Console.WriteLine("DB: " + m_db);
+                using (m_conn)
+                {
+                    MySqlCommand command = new MySqlCommand(
+                      "SELECT * FROM vocab_ru;",
+                      m_conn);
+
+                    MySqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            iHash = StrExt.StringExtension.GetStableHashCode(reader.GetString(0), 5229);
+
+                            System.Diagnostics.Debug.WriteLine(
+                                format,
+                                iHash,
+                                reader.GetString(0),
+                                reader.GetString(1)
+                                );
+                        }
+                    }
+
+                    reader.Close();
+                }
+            }
+
         }
 
         private bool isConnect(string strConn, string db)
@@ -105,5 +245,51 @@ namespace ExportVocab
 
             return bSuccess;
         }
+
+        private IDictionary GetDictionaryData(MySqlConnection conn, string sql, bool isNumOfKey)
+        {
+            IDictionary result = null;
+            var key = (dynamic) null;
+
+            if (isNumOfKey)
+            {
+                result = new Dictionary<int, string>();
+            }
+            else
+            {
+                result = new Dictionary<string, string>();
+            }
+
+            using (conn)
+            {
+                MySqlCommand command = new MySqlCommand(
+                    sql,
+                    conn);
+
+                MySqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        if (isNumOfKey)
+                        {
+                            key = reader.GetInt32(0);
+                        }
+                        else
+                        {
+                            key = itostr(reader.GetString(0));
+                        }
+
+                        result.Add(key, reader.GetString(1));
+                    }
+                }
+
+                reader.Close();
+            }
+
+            return result;
+        }
+
     }
 }
