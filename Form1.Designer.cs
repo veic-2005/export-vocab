@@ -39,8 +39,12 @@
             cBoxTables = new ComboBox();
             dataGridView1 = new DataGridView();
             label5 = new Label();
+            groupBox2 = new GroupBox();
+            btn2d = new Button();
+            btnMb = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
@@ -123,7 +127,7 @@
             // 
             cBoxTables.DropDownStyle = ComboBoxStyle.DropDownList;
             cBoxTables.FormattingEnabled = true;
-            cBoxTables.Location = new Point(612, 20);
+            cBoxTables.Location = new Point(421, 20);
             cBoxTables.Name = "cBoxTables";
             cBoxTables.Size = new Size(126, 23);
             cBoxTables.TabIndex = 5;
@@ -135,23 +139,55 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(362, 60);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(376, 176);
+            dataGridView1.Size = new Size(376, 323);
             dataGridView1.TabIndex = 6;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(562, 23);
+            label5.Location = new Point(366, 23);
             label5.Name = "label5";
-            label5.Size = new Size(43, 15);
+            label5.Size = new Size(49, 15);
             label5.TabIndex = 11;
-            label5.Text = "数据表";
+            label5.Text = "Temp表";
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(btn2d);
+            groupBox2.Controls.Add(btnMb);
+            groupBox2.Location = new Point(28, 253);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(315, 130);
+            groupBox2.TabIndex = 12;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Export Word";
+            // 
+            // btn2d
+            // 
+            btn2d.Location = new Point(180, 47);
+            btn2d.Name = "btn2d";
+            btn2d.Size = new Size(113, 23);
+            btn2d.TabIndex = 1;
+            btn2d.Text = "Two-dimensional array";
+            btn2d.UseVisualStyleBackColor = true;
+            btn2d.Click += btn2d_Click;
+            // 
+            // btnMb
+            // 
+            btnMb.Location = new Point(17, 47);
+            btnMb.Name = "btnMb";
+            btnMb.Size = new Size(75, 23);
+            btnMb.TabIndex = 0;
+            btnMb.Text = "Code table";
+            btnMb.UseVisualStyleBackColor = true;
+            btnMb.Click += btnMb_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(755, 246);
+            ClientSize = new Size(755, 395);
+            Controls.Add(groupBox2);
             Controls.Add(label5);
             Controls.Add(cBoxTables);
             Controls.Add(groupBox1);
@@ -161,6 +197,7 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            groupBox2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
 
@@ -179,6 +216,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnConn;
+        private GroupBox groupBox2;
+        private Button btnMb;
+        private Button btn2d;
     }
 }
 
