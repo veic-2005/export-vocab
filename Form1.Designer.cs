@@ -37,13 +37,15 @@ namespace ExportVocab
             this.edtUser = new System.Windows.Forms.TextBox();
             this.edtSrv = new System.Windows.Forms.TextBox();
             this.edtPwd = new System.Windows.Forms.TextBox();
-            this.cBoxDBs = new System.Windows.Forms.ComboBox();
             this.cBoxTables = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn2d = new System.Windows.Forms.Button();
+            this.btnMb = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -122,21 +124,11 @@ namespace ExportVocab
             this.edtPwd.Size = new System.Drawing.Size(162, 20);
             this.edtPwd.TabIndex = 3;
             // 
-            // cBoxDBs
-            // 
-            this.cBoxDBs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBoxDBs.FormattingEnabled = true;
-            this.cBoxDBs.Location = new System.Drawing.Point(353, 17);
-            this.cBoxDBs.Name = "cBoxDBs";
-            this.cBoxDBs.Size = new System.Drawing.Size(109, 21);
-            this.cBoxDBs.TabIndex = 4;
-            this.cBoxDBs.SelectedIndexChanged += new System.EventHandler(this.cBoxDBs_SelectedIndexChanged);
-            // 
             // cBoxTables
             // 
             this.cBoxTables.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBoxTables.FormattingEnabled = true;
-            this.cBoxTables.Location = new System.Drawing.Point(525, 17);
+            this.cBoxTables.Location = new System.Drawing.Point(368, 17);
             this.cBoxTables.Name = "cBoxTables";
             this.cBoxTables.Size = new System.Drawing.Size(109, 21);
             this.cBoxTables.TabIndex = 5;
@@ -148,36 +140,58 @@ namespace ExportVocab
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(310, 52);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(322, 165);
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(322, 248);
             this.dataGridView1.TabIndex = 6;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(310, 20);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "数据库";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(482, 20);
+            this.label5.Location = new System.Drawing.Point(316, 20);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.Size = new System.Drawing.Size(46, 13);
             this.label5.TabIndex = 0;
-            this.label5.Text = "数据表";
+            this.label5.Text = "Temp表";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btn2d);
+            this.groupBox2.Controls.Add(this.btnMb);
+            this.groupBox2.Location = new System.Drawing.Point(24, 227);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(270, 73);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Export Word";
+            // 
+            // btn2d
+            // 
+            this.btn2d.Location = new System.Drawing.Point(176, 32);
+            this.btn2d.Name = "btn2d";
+            this.btn2d.Size = new System.Drawing.Size(75, 23);
+            this.btn2d.TabIndex = 1;
+            this.btn2d.Text = "Array-2D";
+            this.btn2d.UseVisualStyleBackColor = true;
+            this.btn2d.Click += new System.EventHandler(this.btn2d_Click);
+            // 
+            // btnMb
+            // 
+            this.btnMb.Location = new System.Drawing.Point(30, 32);
+            this.btnMb.Name = "btnMb";
+            this.btnMb.Size = new System.Drawing.Size(75, 23);
+            this.btnMb.TabIndex = 0;
+            this.btnMb.Text = "Code table";
+            this.btnMb.UseVisualStyleBackColor = true;
+            this.btnMb.Click += new System.EventHandler(this.btnMb_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 222);
+            this.ClientSize = new System.Drawing.Size(647, 306);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.cBoxTables);
-            this.Controls.Add(this.cBoxDBs);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
@@ -185,6 +199,7 @@ namespace ExportVocab
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,15 +211,16 @@ namespace ExportVocab
         private System.Windows.Forms.TextBox edtUser;
         private System.Windows.Forms.TextBox edtSrv;
         private System.Windows.Forms.TextBox edtPwd;
-        private System.Windows.Forms.ComboBox cBoxDBs;
         private System.Windows.Forms.ComboBox cBoxTables;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnConn;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btn2d;
+        private System.Windows.Forms.Button btnMb;
     }
 }
 
