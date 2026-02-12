@@ -73,17 +73,17 @@ namespace ExportVocab
         {
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
             MySqlCommandBuilder sqlCmdBuilder = new MySqlCommandBuilder();
+            DataSet ds = new DataSet();
 
             using (conn)
             {
                 // 设置数据桥
                 dataAdapter = new MySqlDataAdapter(sql, conn);
 
-                // DataSet
+                // get 数据
                 sqlCmdBuilder = new MySqlCommandBuilder(dataAdapter);
-                // dataset
-                DataSet ds = new DataSet();
-                // 填充数据表到数据桥
+
+                // 填充数据到DataSet
                 dataAdapter.Fill(ds);
 
                 // 指定数据源
