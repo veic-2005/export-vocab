@@ -16,7 +16,9 @@ namespace ExportVocab
     {
         private MySqlConnection m_conn = new MySqlConnection();
 
-        // db name
+        /// <summary>
+        /// db info
+        /// </summary>
         private string m_db = "";
         private string m_srv = "localhost";
         private string m_usr = "DBAdmin";
@@ -54,7 +56,7 @@ namespace ExportVocab
 
             string strSqlWord = "SELECT id, bare FROM words2;";
 
-            if(cBoxTables.SelectedIndex == 0)
+            if (cBoxTables.SelectedIndex == 0)
             {
                 m_sql = strSqlWord;
             }
@@ -141,7 +143,7 @@ namespace ExportVocab
 
             if (Int32.TryParse(val, out iVal))
             {
-                val = "_" + val;
+                val = "_" + iVal;
             }
 
             result = val;
@@ -159,13 +161,10 @@ namespace ExportVocab
             {
                 foreach (var kbd in inKdb)
                 {
-                    char[] chKeys = kbd.Key.ToArray();
+                    char[] chKeys = kbd.Value.ToArray();
                     if (c.Equals(chKeys[0]))
                     {
-                        // fx
-                        result += inKdb.TryGetValue(kbd.Key, out var value) ? value : null;
-                        // .net core
-                        ////result += m_kbd.GetValueOrDefault(kbd.Key);
+                        result += kbd.Key;
                     }
                 }
 
@@ -188,6 +187,7 @@ namespace ExportVocab
 
             if (isConnect(m_connStr, m_db))
             {
+                Console.WriteLine("DB: " + m_db);
                 using (m_conn)
                 {
                     MySqlCommand command = new MySqlCommand(
@@ -268,13 +268,13 @@ namespace ExportVocab
                         if (isNumOfKey)
                         {
                             key = reader.GetInt32(0);
+                            result.Add(key, reader.GetString(1));
                         }
                         else
                         {
-                            key = itostr(reader.GetString(0));
+                            key = itostr(reader.GetString(1));
+                            result.Add(key, reader.GetString(0));
                         }
-
-                        result.Add(key, reader.GetString(1));
                     }
                 }
 
