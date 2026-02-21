@@ -114,14 +114,14 @@ namespace ExportVocab
             {
                 myWord = new Dictionary<int, string>(
                     (IDictionary<int, string>)GetDictionaryData(m_conn, strSqlWord, true));
-				Console.WriteLine("db: " + m_db);
+                Console.WriteLine("db: " + m_db);
             }
 
             if (isConnect(m_connStr, m_db))
             {
                 myKbd = new Dictionary<string, string>(
                     (IDictionary<string, string>)GetDictionaryData(m_conn, strSql, false));
-				Console.WriteLine("table: cross");
+                Console.WriteLine("table: cross");
             }
 
             foreach (var item in myWord)
@@ -147,7 +147,7 @@ namespace ExportVocab
 
             if (Int32.TryParse(val, out iVal))
             {
-                val = "_" + val;
+                val = "_" + iVal;
             }
 
             result = val;
@@ -165,13 +165,10 @@ namespace ExportVocab
             {
                 foreach (var kbd in inKdb)
                 {
-                    char[] chKeys = kbd.Key.ToArray();
+                    char[] chKeys = kbd.Value.ToArray();
                     if (c.Equals(chKeys[0]))
                     {
-                        // fx
-                        ////result += inKdb.TryGetValue(kbd.Key, out var value) ? value : null;
-                        // .net core
-                        result += inKdb.GetValueOrDefault(kbd.Key);
+                        result += kbd.Key;
                     }
                 }
 
@@ -194,7 +191,7 @@ namespace ExportVocab
 
             if (isConnect(m_connStr, m_db))
             {
-				Console.WriteLine("DB: " + m_db);
+                Console.WriteLine("DB: " + m_db);
                 using (m_conn)
                 {
                     MySqlCommand command = new MySqlCommand(
@@ -275,13 +272,13 @@ namespace ExportVocab
                         if (isNumOfKey)
                         {
                             key = reader.GetInt32(0);
+                            result.Add(key, reader.GetString(1));
                         }
                         else
                         {
-                            key = itostr(reader.GetString(0));
+                            key = itostr(reader.GetString(1));
+                            result.Add(key, reader.GetString(0));
                         }
-
-                        result.Add(key, reader.GetString(1));
                     }
                 }
 
