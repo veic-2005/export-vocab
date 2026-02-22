@@ -4,27 +4,61 @@ Exporting vocabulary from MySQL
 - FX 4.5+
 - MySQL 5.7+
 
-### MySQL
-PMC:
+## project
+- Non-local connection DB:    
+First, add a [user - tdtc2022](https://www.cnblogs.com/xiaobin-hlj80/p/5189419.html);    
+Then, modify cpsConfig.xml
+
+- Requires installation of [SHA-2](https://tdtc-hrb.github.io/ops-win/posts/sha2-install).
+
+### NuGet
+In earlier versions of Visual Studio 2013/2015, you need to configure NuGet.
+- NuGet.Config(%USERPROFILE%\AppData\Roaming\NuGet)
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <config>
+    <add key="http_proxy" value="http://192.168.3.19:8580" />
+    <add key="https_proxy" value="http://192.168.3.19:8580" />
+  </config>
+  <packageRestore>
+    <add key="enabled" value="True" />
+    <add key="automatic" value="True" />
+  </packageRestore>
+  <packageSources>
+    <add key="nuget.org" value="https://www.nuget.org/api/v2/" />
+    <add key="NuGet V3" value="https://api.nuget.org/v3/index.json" />
+  </packageSources>
+  <activePackageSource>
+    <add key="nuget.org" value="https://www.nuget.org/api/v2/" />
+  </activePackageSource>
+</configuration>
 ```
-Update-Package -reinstall
+#### [Restore](https://learn.microsoft.com/en-us/nuget/reference/cli-reference/cli-ref-restore)
+down [nuget CLI](https://dist.nuget.org/win-x86-commandline/latest/nuget.exe)
+```cmd
+cd <ProjectDirectory>
+nuget.exe restore ExportVocab.sln
 ```
-Because it needs to support MySQL v5.7, the highest version that can be selected is mysql.data v8.3.0.
 
-- [Connector/NET Requirements for Related Products](https://dev.mysql.com/doc/connector-net/en/connector-net-versions.html)
+#### [reinstalling and updating packages](https://learn.microsoft.com/en-us/nuget/consume-packages/reinstalling-and-updating-packages)
+Upgrading the dotnet framework version requires upgrading the PACK information.
+```
+PMC> Update-Package -reinstall
+```
 
-|Connector/NET Version|.NET Versions|MySQL Server|
-|-|-|-|
-|C/NET 8.3.0|.NET 8/.NET 7/.NET 6/.NET Framework 4.8/.NET Framework 4.6.2|MySQL 8.3, MySQL 8.0, or MySQL 5.7|
+### gen exec
+- [.NET Framework Developer pack](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
+- [Build Tools for Visual Studio 2022](https://visualstudio.microsoft.com/downloads/?cid=learn-onpage-download-cta#build-tools-for-visual-studio-2022)
+```
+cd <ProjectDirectory>
+MsBuild.exe ExportVocab.sln
+```
+Add the following directories to the system variables:
+```
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin
+```
 
-### Dot Net
-- [Remarks for version 4.5 and later](https://learn.microsoft.com/en-us/dotnet/framework/install/versions-and-dependencies?source=recommendations#remarks-for-version-45-and-later)
-
-#### Remarks for version 4.5 and later
-.NET Framework 4.5 is an in-place update that replaces .NET Framework 4 on your computer, and similarly, 
-.NET Framework 4.5.1, 4.5.2, 4.6, 4.6.1, 4.6.2, 4.7, 4.7.1, 4.7.2, and 4.8 are in-place updates to .NET Framework 4.5. 
-In-place update means that they use the same runtime version, but the assembly versions are updated and include new types and members. 
-After you install one of these updates, your .NET Framework 4, .NET Framework 4.5, .NET Framework 4.6, 
-or .NET Framework 4.7 apps should continue to run without requiring recompilation. However, 
-the reverse is not true. We do not recommend running apps that target a later version of .NET Framework on an earlier version. 
-For example, we do not recommend that you run an app the targets .NET Framework 4.6 on .NET Framework 4.5.
+# Ref
+- [Common NuGet configurations](https://learn.microsoft.com/en-us/nuget/consume-packages/configuring-nuget-behavior)
+- [How to build .NET 4.6 Framework app without Visual Studio installed?](https://stackoverflow.com/a/32070575)
